@@ -23,7 +23,21 @@ foreach ($response[1] as $value) {
 }
 if(count($female) >= 2) $females = combine($female);
 //出力
-vd(combine([$males,$females]));
+$morphArr = combine([$males,$females]);
+
+
+foreach ($morphArr as $values) {
+	natsort($values);
+	$str = "";
+	foreach ($values as $value) {
+		if($value != "") $str .= $value . " ";
+	}
+	$morphs[] = $str;
+}
+
+array_multisort( array_map( "strlen", $morphs ), SORT_DESC, $morphs ) ;
+
+vd($morphs);
 
 
 function disassembly($str,$recessive){
