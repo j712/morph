@@ -37,15 +37,13 @@ foreach ($morphArr as $values) {
 	$morphs[] = trim($str);
 }
 
-
-
-
-
-
-
-
 array_multisort( array_map( "strlen", $morphs ), SORT_DESC, $morphs ) ;
 vd($morphs);
+
+
+
+
+//ヘテロの分解・スーパー体の分解・ヘテロの分解
 function disassembly($str,$recessive){
 	$superExplode = explode(" ", $str);
 	if(in_array($str, $recessive)){
@@ -56,6 +54,8 @@ function disassembly($str,$recessive){
 		return $result = [$str, ""];
 	}
 }
+
+//全件回すやつ
 function combine($elements, $result=[]) {
 	//再帰している場合はfalseの方
     $a = empty($result) ? array_shift($elements) : $result;
