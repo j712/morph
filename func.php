@@ -1,48 +1,4 @@
-<?php 
-$recessive = ["Albino"];
-$co_dom = ["Pastel","YellowBelly"];
-$dom = ["pin_stripe"];
-$co_dom_aka = [["YellowBelly","Ivory"],["BlackPastel","EightBall"]];
-$response = 
-[
-	["BlackPastel","het Albino"],
-	["YellowBelly","het Albino"]
-];
-//--------------遺伝子情報の分解する箇所
-//male
-foreach ($response[0] as $value) $male[] = disassembly($value, $recessive);
-if(count($male) >= 2) $males = combine($male);
-//female
-foreach ($response[1] as $value) $female[] = disassembly($value, $recessive);
-if(count($female) >= 2) $females = combine($female);
-//全件一致を行う
-$morphArr = combine([$males,$females]);
-
-//---------------文字列に変換&文字列内でsort
-foreach ($morphArr as $values) {
-	//文字列内のsort
-	natsort($values);
-	//個数別で出力
-	$arr = array_count_values($values);
-	//vd($arr);
-	$str = "";
-	//文字列連結を行う
-	foreach ($arr as $key => $value) {
-		if($value == 2 && $value != ""){
-			if(!strpos($key, "het")) $key = str_replace('het ', '', $key);
-		}
-		
-		if($value != "") $str .= $key . " ";
-	}
-	$morphs[] = trim($str);
-}
-
-array_multisort( array_map( "strlen", $morphs ), SORT_DESC, $morphs ) ;
-vd($morphs);
-
-
-
-
+<?php
 //ヘテロの分解・スーパー体の分解・ヘテロの分解
 function disassembly($str,$recessive){
 	$superExplode = explode(" ", $str);
@@ -71,9 +27,49 @@ function combine($elements, $result=[]) {
 }
 
 //出力用
-function vd($arr){
+function vd($arr,$str=""){
+	echo $str;
 	echo "<pre>";
 	var_export($arr);
 	echo "</pre>";
+}
+
+//文字列に変換&文字列内でsort
+function strEtc($morphArr,$aka){
+	foreach ($morphArr as $values) {
+		//文字列内のsort
+		natsort($values);
+		//個数別で出力
+		$arr = array_count_values($values);
+		$str = "";
+		//文字列連結を行う
+		$count = 0;
+		foreach ($arr as $key => $value) {
+			
+			//モルフがノーマル以外なら追加
+			if($key != ""){
+				$count = $count + $value;
+				//同じモルフが２つある場合
+				if($value == 2){
+					//trueの場合hetを処理、falseの場合superを付与
+					if(strstr($key, "het")) {
+						$key = str_replace('het ', '', $key);
+					}else{
+						if(false != array_search($key,$aka)){
+							$key = array_search($key,$aka);
+						}else{
+							$key = "Super ". $key;
+						}
+						
+					}
+				}
+				$str .= $key . " ";
+			}
+			
+		}
+		$morphs[] = trim($str);
+	}
+
+	return $morphs;
 }
 ?>

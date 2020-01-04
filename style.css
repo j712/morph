@@ -1,0 +1,96 @@
+body{
+	width:90%;
+	margin:auto;
+}
+
+h1,h2,h3,h4,p,img,div{
+	text-align:center;
+	padding:10px;
+}
+
+table{
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 90%;
+	margin:auto;
+	padding-top: 10px;
+}
+
+table tr.design{
+	border-bottom: solid 1px #eee;
+	border-left: solid 1px  #eee;
+	border-right: solid 1px  #eee;
+}
+
+table tr.design-img{
+	border-bottom: solid 1px #eee;
+	border-left: solid 1px  #eee;
+	border-right: solid 1px  #eee;
+	background-color: black;
+}
+
+table tr.design-plus{
+	border-bottom: solid 1px #eee;
+	border-left: solid 1px  #eee;
+	border-right: solid 1px  #eee;
+	background-color: #9932cc;
+	color: white;
+}
+
+
+table tr.design:hover{
+	background-color: #d4f0fd;
+}
+
+table th,table td{
+	text-align: center;
+	width: 25%;
+	padding: 15px 0;
+	background-color: gainsboro;
+	border-bottom: solid 1px #eee;
+	border-left: solid 1px  #eee;
+	border-right: solid 1px  #eee;
+}
+
+table th{
+  	background-color: black;
+  	color: white;
+}
+
+
+
+button.button1 {
+  display: inline-block;
+  text-decoration: none;
+  color: #FFF;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  border-radius: 50%;
+  text-align: center;
+  overflow: hidden;
+  background-image: linear-gradient(45deg, #709dff 0%, #91fdb7 100%);
+  transition: .4s;
+}
+
+button.button1:hover {
+  -webkit-transform: rotate(10deg);
+  transform: rotate(10deg);
+}
+
+
+#error{
+	color:red;		
+	background-color: #21D44D;
+    background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+}
+
+.borders {
+	border-top: solid 3px  #eee;
+	border-bottom: solid 3px #eee;
+	border-left: solid 3px  #eee;
+	border-right: solid 3px  #eee;
+	margin-bottom: 3px;
+}
+
+
