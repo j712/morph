@@ -55,12 +55,12 @@ function strEtc($morphArr,$aka){
 					if(strstr($key, "het")) {
 						$key = str_replace('het ', '', $key);
 					}else{
+						//trueはaka,falseはsuper
 						if(false != array_search($key,$aka)){
 							$key = array_search($key,$aka);
 						}else{
 							$key = "Super ". $key;
 						}
-						
 					}
 				}
 				$str .= $key . " ";
@@ -68,8 +68,8 @@ function strEtc($morphArr,$aka){
 			
 		}
 		$morphs[] = trim($str);
+		$list[$str] = $count;
 	}
-
-	return $morphs;
+	return [$morphs,$list];
 }
 ?>
