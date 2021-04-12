@@ -1,4 +1,16 @@
 <?php
+
+//モルフが１つしかないやつ用
+function one($sex){
+	array_push($sex, ["",""]);
+	return $sex;
+}
+//入力されたモルフを計算用に分解
+function separate($arr,$recessive){
+	foreach ($arr as $value) $sex[] = disassembly($value, $recessive);
+	return (2 <= count($sex)) ? combine($sex) : combine(one($sex));
+}
+
 //ヘテロの分解・スーパー体の分解・ヘテロの分解
 function disassembly($str,$recessive){
 	$superExplode = explode(" ", $str);
@@ -45,7 +57,6 @@ function strEtc($morphArr,$aka){
 		//文字列連結を行う
 		$count = 0;
 		foreach ($arr as $key => $value) {
-			
 			//モルフがノーマル以外なら追加
 			if($key != ""){
 				$count = $count + $value;
@@ -55,17 +66,12 @@ function strEtc($morphArr,$aka){
 					if(strstr($key, "het")) {
 						$key = str_replace('het ', '', $key);
 					}else{
-						//trueはaka,falseはsuper
-						if(false != array_search($key,$aka)){
-							$key = array_search($key,$aka);
-						}else{
-							$key = "Super ". $key;
-						}
+						//trueは(super体の)aka,falseはsuper
+						$key = false != array_search($key,$aka) ? array_search($key,$aka) : "Super ". $key;
 					}
 				}
 				$str .= $key . " ";
 			}
-			
 		}
 		$morphs[] = trim($str);
 		$list[$str] = $count;
